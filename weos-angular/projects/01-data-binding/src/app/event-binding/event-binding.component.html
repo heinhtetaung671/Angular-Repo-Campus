@@ -1,1 +1,9 @@
-<p>event-binding works!</p>
+<h3 [ngClass]="{'text-primary': num <= 20}">{{ num }}</h3>
+
+<h3 [class.text-warning]="num > 40 && num <= 60">{{ num }}</h3>
+
+<h3 [ngClass]="num > 20 && num <= 40 ? 'text-success' : 'text-danger'">{{ num }}</h3>
+
+<h3 [style]="myStyle">This is style attribute binding.</h3>
+
+<h3 [ngStyle]="myStyle">This is ngStyle driective binding.</h3>

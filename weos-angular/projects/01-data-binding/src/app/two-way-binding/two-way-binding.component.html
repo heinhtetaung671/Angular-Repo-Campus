@@ -1,1 +1,31 @@
-<p>two-way-binding works!</p>
+
+<div class="row justify-content-center g-3 align-items-center">
+   <div class="col-5">
+      <h3 class="fw-semibold text-danger ">Two Way DataBinding</h3>
+      <div class="mb-3">
+         <label for="name"   class="form-label">Name</label>
+         <input #name (keyup)="user.name = name.value" [value]="user.name" type="text" id="name" name="name" class="form-control" placeholder="eg. David">
+      </div>
+      <div class="mb-3">
+         <label for="phone"   class="form-label">Phone</label>
+         <input #phone (keyup)="user.phone = phone.value" [value]="user.phone" type="tel" id="phone" name="phone" class="form-control" placeholder="+957522254999">
+      </div>
+      <div class="mb-3">
+         <label for="gender"   class="form-label">Gender</label>
+         <select (change)="user.gender = convertGender(gender.value)" #gender [value]="user.gender" class="form-select">
+            <option value="">Select Gender</option>
+            @for (gender of genderArray; track $index) {
+            <option [value]="gender" [selected]="gender == user.gender">{{ gender }}</option>
+           }
+         </select>
+      </div>
+      <div class="mb-3 text-center">
+         <button (click)="saveData(name.value, phone.value, gender.value)" class="btn btn-outline-danger me-2" style="width: 25%;">Save</button>
+         <button (click)="name.value = ''; phone.value = ''; gender.value = ''" class="btn btn-danger" style="width: 25%;">Reset</button>
+      </div>
+   </div>
+
+   <div class="col">
+      {{ user | json}}
+   </div>
+</div>
