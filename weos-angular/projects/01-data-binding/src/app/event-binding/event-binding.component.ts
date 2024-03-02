@@ -17,6 +17,8 @@ export class EventBindingComponent {
     borderLeft: '5px solid red'
   }
 
-  myClassObj = {}
+  myClassObj = {
+    'text-primary': this.num <= 20
+  }
 
 }
