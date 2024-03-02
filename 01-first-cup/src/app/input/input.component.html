@@ -1,0 +1,10 @@
+<div class="container mt-3">
+    <p>{{ message }}</p>
+
+    <ul>
+        @for (message of messages; track $index) {
+            <li>{{ message + $index}}</li>
+        }
+        <li *ngFor="let message of messages; index as i">{{ message + i }}</li>
+    </ul>
+</div>

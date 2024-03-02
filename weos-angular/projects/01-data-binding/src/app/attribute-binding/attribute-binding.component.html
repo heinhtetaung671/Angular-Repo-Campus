@@ -1,0 +1,11 @@
+<div class="row g-3">
+   <div class="col-6">
+      <input #ran type="range" (change)="currentValue = +ran.value" [min]="minValue" [max]="maxValue" value="currentValue" class="form-control">
+      <button (click)="currentValue = +ran.value" class="btn btn-sm btn-outline-danger mt-3">Set Value</button>
+   </div>
+   <div class="col">
+      <p>Min Value = {{ minValue }}</p>
+      <p>Max Value = {{ maxValue }}</p>
+      <p>Current = {{ currentValue }}</p>
+   </div>
+</div>
