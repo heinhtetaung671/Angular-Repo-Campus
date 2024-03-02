@@ -1,1 +1,113 @@
-<p>template-driven works!</p>
+
+<div class="row g3 justify-content-center">
+   <h4 class="text-center fw-semibold text-success">Student Form with Angular Template Driven</h4>
+   <form #form="ngForm" class="col-8">
+      <div class="row mb-3">
+         <div class="col">
+            <label for="name" class="form-label">Name <span class="text-danger">*</span> </label>
+            <input #name="ngModel" ngModel required type="text" name="name" id="name" class="form-control" placeholder="Eg. David">
+            <span *ngIf="name.touched && name.invalid" class="col text-danger" style="font-size: 0.9rem;">
+               Name can't be empty!
+            </span>
+         </div>
+         <div class="col">
+            <label for="birthYear" class="form-label">Birth Year</label>
+            <select #birthYear="ngModel" ngModel  name="birthYear" id="birthYear" class="form-control" >
+               <option value="">Select Birth Year</option>
+               @for (year of years ; track $index) {
+                  <option [value]="year">{{ year }}</option>
+               }
+            </select>
+         </div>
+
+       </div>
+
+       <div class="row mb-3" ngModelGroup="contact">
+         <div class="col">
+            <label for="phone" class="form-label">Phone</label>
+            <input #phone="ngModel" ngModel type="tel" name="phone" id="phone" class="form-control" placeholder="Eg. +9556585658">
+         </div>
+         <div class="col">
+            <label for="email" class="form-label">Email  <span class="text-danger">*</span></label>
+            <input #email="ngModel" ngModel required type="email" name="email" id="email" class="form-control" placeholder="Eg. david@gmail.com">
+            <span *ngIf="(email.invalid && (email.touched || email.dirty))" class="col text-danger" style="font-size: 0.9rem;">
+               {{ email.getError('email') ? 'Email format is invalid!' : 'Email can\'t be empty' }}
+            </span>
+         </div>
+      </div>
+      <div class="row mb-3">
+         <div class="col d-flex align-items-center">
+            <div>
+               <label for="" class="form-label">Gender  <span class="text-danger">*</span></label>
+               <div>
+                  <label for="male" class="form-check-label me-2">Male</label>
+                  <input ngModel type="radio" name="gender" value="male" id="male" class="form-check-input me-2">   
+                  <label for="female" class="form-check-label me-2">Female</label>
+                  <input ngModel type="radio" name="gender" value="female" id="female" class="form-check-input me-2">   
+                  <label for="other" class="form-check-label me-2">Other</label>
+                  <input ngModel type="radio" name="gender" value="other" id="other" class="form-check-input me-2">   
+               </div>
+            </div>
+         </div>
+         <div class="col">
+            <label for="mark" class="form-label">Marks  <span class="text-danger">*</span></label>
+            <input ngModel ngModel type="number" name="mark" id="mark" class="form-control" placeholder="Eg. 99">
+         </div>
+      </div>
+
+      <!-- 
+      <div class="row mb-3">
+         <div class="col">
+            <label for="phone" class="form-label">Subject</label>
+            <div>
+               <label for="myan" class="form-check-label me-2">Myanmar</label>
+               <input ngModel type="checkbox" value="myanmar" name="myan" id="myan" class="form-check-input me-2">
+               <label for="eng" class="form-check-label me-2">English</label>
+               <input ngModel type="checkbox" value="english" name="eng" id="eng" class="form-check-input me-2">
+               <label for="math" class="form-check-label me-2">Math</label>
+               <input ngModel type="checkbox" value="math" name="math" id="math" class="form-check-input me-2">
+               <label for="chem" class="form-check-label me-2">Chemistry</label>
+               <input ngModel type="checkbox" value="chemistry" name="chem" id="chem" class="form-check-input me-2">
+            </div>
+        </div>
+      </div>
+
+      -->
+      <input (click)="list.push(form.value); form.reset()" type="submit" value="Submit" class="btn btn-outline-success mb-3">
+   </form>
+</div>
+
+{{ form.value | json}}
+
+<h3 class="my-3 fw-semibold text-success">Student List</h3>
+
+@if (list.length > 0) {
+   <table class="table table-striped">
+      <thead>
+         <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Mark</th>
+            <th>Gender</th>
+            <th>BirthYear</th>
+         </tr>
+      </thead>
+      <tbody>
+         @for (student of list; track $index) {
+            <tr>
+               <td>{{ student.name }}</td>
+               <td>{{ student.contact.phone }}</td>
+               <td>{{ student.contact.email }}</td>
+               <td>{{ student.mark }}</td>
+               <td>{{ student.gender }}</td>
+               <td>{{ student.birthYear }}</td>
+            </tr>
+         }
+      </tbody>
+   </table>
+} @else {
+   <div class="alert alert-warning text-center rounded-0 border border-4 border-success border-top-0 border-end-0 border-bottom-0">
+      There is no data.
+   </div>
+}
