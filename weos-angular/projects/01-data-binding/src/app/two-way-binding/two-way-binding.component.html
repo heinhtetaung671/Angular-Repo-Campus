@@ -4,15 +4,15 @@
       <h3 class="fw-semibold text-danger ">Two Way DataBinding</h3>
       <div class="mb-3">
          <label for="name"   class="form-label">Name</label>
-         <input #name (keyup)="user.name = name.value" [value]="user.name" type="text" id="name" name="name" class="form-control" placeholder="eg. David">
+         <input #name [(ngModel)]="user.name" type="text" id="name" name="name" class="form-control" placeholder="eg. David">
       </div>
       <div class="mb-3">
          <label for="phone"   class="form-label">Phone</label>
-         <input #phone (keyup)="user.phone = phone.value" [value]="user.phone" type="tel" id="phone" name="phone" class="form-control" placeholder="+957522254999">
+         <input #phone [(ngModel)]="user.phone" type="tel" id="phone" name="phone" class="form-control" placeholder="+957522254999">
       </div>
       <div class="mb-3">
          <label for="gender"   class="form-label">Gender</label>
-         <select (change)="user.gender = convertGender(gender.value)" #gender [value]="user.gender" class="form-select">
+         <select [(ngModel)]="user.gender" #gender [value]="user.gender" class="form-select">
             <option value="">Select Gender</option>
             @for (gender of genderArray; track $index) {
             <option [value]="gender" [selected]="gender == user.gender">{{ gender }}</option>
