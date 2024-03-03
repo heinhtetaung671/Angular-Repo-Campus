@@ -15,7 +15,7 @@ export class DepartmentEditComponent {
 
   constructor(builder: FormBuilder) {
     this.form = builder.group({
-      code: ['', Validators.required],
+      code: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]],
       name: ['', Validators.required],
       phone: ['', Validators.required],
       description: ''

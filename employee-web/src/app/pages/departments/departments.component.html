@@ -18,18 +18,21 @@
             </tr>
          </thead>
          <tbody>
-            <tr>
-               <td>Code</td>
-               <td>Name</td>
-               <td>Head</td>
-               <td>Phone</td>
-               <td>10</td>
-               <td class="text-center">
-                  <a href="#">
-                     <i class="bi-send"></i>
-                  </a>
-               </td>
-            </tr>
+            @for (item of list(); track $index) {
+               <tr>
+                  <td>{{  item.code }}</td>
+                  <td>{{  item.name }}</td>
+                  <td>{{  item.phone }}</td>
+                  <td>{{  item.hodName }}</td>
+                  <td>{{  item.employee }}</td>
+                  <td class="text-center">
+                     <a href="#">
+                        <i class="bi-send"></i>
+                     </a>
+                  </td>
+               </tr>
+   
+            }
          </tbody>
       </table>
    </div>
@@ -40,14 +43,14 @@
 
          <form action="">
             <app-form-group label="Code">
-               <input [(ngModel)]="searchCode" name="searchCode" type="text" class="form-control" placeholder="Search Code">
+               <input  name="searchCode" type="text" class="form-control" placeholder="Search Code">
             </app-form-group>
             <app-form-group label="Name">
-               <input [(ngModel)]="searchName" name="searchName" type="text" class="form-control" placeholder="Search Name">
+               <input  name="searchName" type="text" class="form-control" placeholder="Search Name">
             </app-form-group>
             <div>
-               <button class="btn btn-primary d-inline-block w-100 mb-2"><i></i> Search</button>
-               <a [routerLink]="['/departments/edit']" class="btn btn-danger d=inline-block w-100"><i></i> Add New</a>
+               <button (click)="search()" type="button" class="btn btn-primary d-inline-block w-100 mb-2"><i class="bi-search"></i>  Search</button>
+               <a [routerLink]="['/departments/edit']" class="btn btn-danger d=inline-block w-100"><i class="bi-plus"></i> Add New</a>
             </div>
          </form>
 

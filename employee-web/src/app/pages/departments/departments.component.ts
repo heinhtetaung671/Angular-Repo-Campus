@@ -1,14 +1,15 @@
-import { Component, effect, model } from '@angular/core';
+import { Component, effect, model, signal } from '@angular/core';
 import { WidgetsModule } from '../../widgets/widgets.module';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { DepartmentService } from '../../service/department.service';
 
 @Component({
   selector: 'app-departments',
   standalone: true,
   imports: [
     WidgetsModule,
-    FormsModule,
+    ReactiveFormsModule,
     RouterLink
   ],
   templateUrl: './departments.component.html',
@@ -16,13 +17,20 @@ import { RouterLink } from '@angular/router';
 })
 export class DepartmentsComponent {
 
-  searchCode = model<string>();
-  searchName = model<string>();
+  form!: FormGroup 
 
-  constructor() {
-    effect( () => {
-      console.log(`Search Code is ${this.searchCode}`);
-      console.log(`Search Name is ${this.searchName}`)
+  list = signal<any[]>([]);
+
+  constructor(builder: FormBuilder, private service: DepartmentService){
+    this.form = builder.group({
+      code: '',
+      name: ''
+    })
+  }
+
+  search(){
+    this.service.search(this.form.value).subscribe(result => {
+      this.list.set(result.payload)
     })
   }
 }
