@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { birthYears } from '../model/birthYear';
-import { FormsModule } from '@angular/forms';
+import { Form, FormControl, FormGroup, FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Student } from '../model/data/student';
 
@@ -14,4 +14,15 @@ import { Student } from '../model/data/student';
 export class TemplateDrivenComponent {
   list: Student[] = [];
   years: number[] = birthYears();
+  formValue: any;
+
+
+  constructor( ){
+  }
+
+  onSubmit(value: any){
+    this.formValue = value;
+    console.log(value);
+  }
+
 }

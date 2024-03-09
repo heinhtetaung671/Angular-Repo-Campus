@@ -1,1 +1,93 @@
-<p>reactive works!</p>
+
+<div class="row g3 justify-content-center">
+   <h4 class="text-center fw-semibold text-success">Student Form with Angular Template Driven</h4>
+   <form class="col-8" [formGroup]="form" >
+      <div class="row mb-3">
+         <div class="col">
+            <label for="name" class="form-label">Name <span class="text-danger">*</span> </label>
+            <input formControlName="name" type="text" id="name" class="form-control" placeholder="Eg. David">
+            @if (form.get('name')?.touched) {}
+         </div>
+         <div class="col">
+            <label for="birthYear" class="form-label">Birth Year</label>
+            <select formControlName="birthYear" id="birthYear" class="form-control" >
+               <option value="">Select Birth Year</option>
+               @for (year of years ; track $index) {
+                  <option [value]="year">{{ year }}</option>
+               }
+            </select>
+         </div>
+
+       </div>
+
+       <div class="row mb-3">
+         <div class="col">
+            <label for="phone" class="form-label">Phone</label>
+            <input formControlName="phone" type="tel" id="phone" class="form-control" placeholder="Eg. +9556585658">
+         </div>
+         <div class="col">
+            <label for="email" class="form-label">Email  <span class="text-danger">*</span></label>
+            <input formControlName="email" type="email" id="email" class="form-control" placeholder="Eg. david@gmail.com">
+         </div>
+      </div>
+      <div class="row mb-3">
+         <div class="col d-flex align-items-center">
+            <div>
+               <label for="" class="form-label">Gender  <span class="text-danger">*</span></label>
+               <div>
+                  <label for="male" class="form-check-label me-2">Male</label>
+                  <input formControlName="gender" type="radio" value="Male" id="male" class="form-check-input me-2">   
+                  <label for="female" class="form-check-label me-2">Female</label>
+                  <input formControlName="gender" type="radio" value="Female" id="female" class="form-check-input me-2">   
+                  <label for="other" class="form-check-label me-2">Other</label>
+                  <input formControlName="gender" type="radio" value="Other" id="other" class="form-check-input me-2">   
+               </div>
+            </div>
+         </div>
+         <div class="col">
+            <label for="mark" class="form-label">Marks  <span class="text-danger">*</span></label>
+            <input formControlName="mark" type="number"  id="mark" class="form-control" placeholder="Eg. 99">
+         </div>
+      </div>
+
+      <!-- 
+      <div class="row mb-3">
+         <div class="col">
+            <label for="phone" class="form-label">Subject</label>
+            <div>
+               <label for="myan" class="form-check-label me-2">Myanmar</label>
+               <input ngModel type="checkbox" value="myanmar" name="myan" id="myan" class="form-check-input me-2">
+               <label for="eng" class="form-check-label me-2">English</label>
+               <input ngModel type="checkbox" value="english" name="eng" id="eng" class="form-check-input me-2">
+               <label for="math" class="form-check-label me-2">Math</label>
+               <input ngModel type="checkbox" value="math" name="math" id="math" class="form-check-input me-2">
+               <label for="chem" class="form-check-label me-2">Chemistry</label>
+               <input ngModel type="checkbox" value="chemistry" name="chem" id="chem" class="form-check-input me-2">
+            </div>
+        </div>
+      </div>
+
+      -->
+      <button type="submit" (click)="add(form.value)" [ngClass]="{disabled: form.invalid}" class="btn btn-success">Submit</button>
+   </form>
+
+   <div class="col">
+
+      @if (students.length <= 0) {
+         <div class="alert alert-warning text-center rounded-0 border border-4 border-success border-top-0 border-end-0 border-bottom-0">
+            There is no data.
+         </div>
+      } @else {
+         <ul class="list-group">
+            @for (student of students; track $index) {
+               <li class="list-group-item d-flex justify-content-between list-group-item-action">
+               {{ student.name + ', ' + student.birthYear }}
+               <span (click)="displayValue(student)" class="badge text-bg-info">Edit</span>
+               </li>
+            }
+         </ul>
+      }
+   
+   </div>
+</div>
+

@@ -1,7 +1,7 @@
 
 <div class="row g3 justify-content-center">
    <h4 class="text-center fw-semibold text-success">Student Form with Angular Template Driven</h4>
-   <form #form="ngForm" class="col-8">
+   <form #form="ngForm" (ngSubmit)="onSubmit(form.value)" class="col-8">
       <div class="row mb-3">
          <div class="col">
             <label for="name" class="form-label">Name <span class="text-danger">*</span> </label>
@@ -97,8 +97,8 @@
          @for (student of list; track $index) {
             <tr>
                <td>{{ student.name }}</td>
-               <td>{{ student.contact.phone }}</td>
-               <td>{{ student.contact.email }}</td>
+               <td>{{ student.phone }}</td>
+               <td>{{ student.email }}</td>
                <td>{{ student.mark }}</td>
                <td>{{ student.gender }}</td>
                <td>{{ student.birthYear }}</td>
