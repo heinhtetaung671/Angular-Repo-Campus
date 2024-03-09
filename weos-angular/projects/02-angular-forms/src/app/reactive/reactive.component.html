@@ -6,12 +6,16 @@
          <div class="col">
             <label for="name" class="form-label">Name <span class="text-danger">*</span> </label>
             <input formControlName="name" type="text" id="name" class="form-control" placeholder="Eg. David">
-            @if (form.get('name')?.touched) {}
+            @if ((name.touched || name.dirty) && name.invalid) {
+               <span class="col text-danger" style="font-size: 0.9rem;">
+                  Name can't be empty!
+               </span>   
+            }
          </div>
          <div class="col">
             <label for="birthYear" class="form-label">Birth Year</label>
             <select formControlName="birthYear" id="birthYear" class="form-control" >
-               <option value="">Select Birth Year</option>
+               <option value="0">Select Birth Year</option>
                @for (year of years ; track $index) {
                   <option [value]="year">{{ year }}</option>
                }
@@ -20,14 +24,25 @@
 
        </div>
 
-       <div class="row mb-3">
+       <div class="row mb-3" formGroupName="contact">
          <div class="col">
             <label for="phone" class="form-label">Phone</label>
             <input formControlName="phone" type="tel" id="phone" class="form-control" placeholder="Eg. +9556585658">
+            @if ((phone.touched || phone.dirty) && phone.invalid) {
+               <span class="col text-danger" style="font-size: 0.9rem;">
+                  Phone can't be empty!
+               </span>   
+            }
+
          </div>
          <div class="col">
             <label for="email" class="form-label">Email  <span class="text-danger">*</span></label>
             <input formControlName="email" type="email" id="email" class="form-control" placeholder="Eg. david@gmail.com">
+            @if ((email.touched || email.dirty) && email.invalid) {
+               <span class="col text-danger" style="font-size: 0.9rem;">
+                  {{ email.getError('email') ? 'Email format is invalid!' : 'Email can\'t be empty' }}
+               </span>   
+            }
          </div>
       </div>
       <div class="row mb-3">
@@ -68,25 +83,53 @@
       </div>
 
       -->
+
+      <div class="mb-3 row justify-content-center">
+         <div class="col-6">
+            <div class="d-flex justify-content-between">
+               <div>
+                  <label for="subjects">Subjects</label>
+               </div>
+               <button (click)="addSubjectInput()" [ngClass]="{'disabled': subjectFormArray.length >= 6}" class="btn-sm btn-outline-primary btn p-1" style="width: 40px; height: 40px;">&plus;</button>
+            </div>
+         </div>
+      </div>
+
+      <div formArrayName="subjects">
+         <div class="row justify-content-center">
+            <div class="col-6">
+               @for (item of subjectFormArray.controls;  let count = $count; let last = $last; let index = $index; track index;) {
+                <div class="d-flex justify-content-between gap-2" [ngClass]="{'mb-2': !last}">
+                  <input [value]="item.value" [formControlName]="index" type="text" class="form-control" placeholder="Subject">
+                  <button (click)="removeSubjectInput(index)" [ngClass]="{'disabled': count == 1}" class="subjectInputPlusBtn btn text-bg-danger" style="width: 40px; height: 40px;">&times;</button>
+                </div>
+               }
+            </div>
+         </div>
+      </div>
+
       <button type="submit" (click)="add(form.value)" [ngClass]="{disabled: form.invalid}" class="btn btn-success">Submit</button>
    </form>
 
    <div class="col">
 
-      @if (students.length <= 0) {
-         <div class="alert alert-warning text-center rounded-0 border border-4 border-success border-top-0 border-end-0 border-bottom-0">
-            There is no data.
-         </div>
-      } @else {
-         <ul class="list-group">
-            @for (student of students; track $index) {
-               <li class="list-group-item d-flex justify-content-between list-group-item-action">
-               {{ student.name + ', ' + student.birthYear }}
+      <pre>
+         {{ form.value | json}}
+      </pre>
+
+       <ul class="list-group">
+          @for (student of students; track $index) {
+             <li class="list-group-item d-flex justify-content-between list-group-item-action">
+              {{ student.name + ', ' + student.birthYear }}
                <span (click)="displayValue(student)" class="badge text-bg-info">Edit</span>
                </li>
+            } @empty {
+               <div class="alert alert-warning text-center rounded-0 border border-4 border-success border-top-0 border-end-0 border-bottom-0">
+                  There is no data.
+               </div>
             }
          </ul>
-      }
+      
    
    </div>
 </div>
