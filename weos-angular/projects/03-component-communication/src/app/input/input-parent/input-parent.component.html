@@ -21,7 +21,8 @@
             <label for="phone" class="form-label">Phone</label>
             <input formControlName="phone" id="phone" type="text" class="form-control" placeholder="Employee Name">
          </div>
-         <div class="mb-3">
+         <!--         
+            <div class="mb-3">
             <div class="d-flex">
                <label class="form-check-label">PartTime</label>
                <input formControlName="type" type="radio" class="form-check-input">
@@ -30,23 +31,22 @@
                <label class="form-check-label">Contract</label>
                <input formControlName="type" type="radio" class="form-check-input">
             </div>
-         </div>
+         </div>-->
 
          <ng-container formArrayName="type">
-            <label for="part" class="form-check-label me-2">Part Time</label>
-            <input type="checkbox" value="PartTime" formControlName="part" id="part" class="form-check-input">
-
-            <label for="daily" class="form-check-label me-2">Daily</label>
-            <input type="checkbox" value="Daily" formControlName="daily" id="part" class="form-check-input">
-
-            <label for="contract" class="form-check-label me-2">Contract</label>
-            <input type="checkbox" value="contract" formControlName="contract" id="contract" class="form-check-input mb-3">
+            @for (type of employeeType; track idx; let idx = $index) {
+               <label [for]="type.split(' ')[0].toLowerCase()" for="part" class="form-check-label me-2">{{ type }}</label>
+               <input type="checkbox" [formControlName]="idx" [value]="type.split(' ')[0].toLowerCase()" [id]="type.split(' ')[0].toLowerCase()" class="form-check-input me-2">   
+            }
          </ng-container>
 
          <div class="text-end">
             <button (click)="saveData()" class="btn btn-outline-dark">Submit</button>
          </div>
-
+         
+         <pre>
+            {{ empForm | json}}
+         </pre>
       </form>
    </div>
    <div class="col">
