@@ -13,8 +13,6 @@ export const routes: Routes = [
          {path: 'details', component: DepartmentDetailsComponent  },
          {path: 'edit', component: DepartmentEditComponent  },
          {path: '', redirectTo: '/departments/list', pathMatch: 'full' }
-
-
       ]
    },
    {

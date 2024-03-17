@@ -1,7 +1,7 @@
-<h4><i class="bi-building-add"></i> Create Department</h4>
+<h4><i [ngClass]="edit() ? 'bi-pencil' : 'bi-add-lg'"></i> {{ edit() ? 'Edit Department' : 'Create Department' }}</h4>
 
 <div class="row">
-  <div class="col-8">
+  <div class="col-8">   
     <form [formGroup]="form" action="">
       <!-- Code-->
       <div class="row">
@@ -42,7 +42,7 @@
          <textarea formControlName="description" cols="30" rows="3" class="form-control"></textarea>
       </app-form-group>
 
-      <button [class.disabled]="!form.valid" class="btn btn-danger">
+      <button (click)="save()" [class.disabled]="!form.valid" class="btn btn-danger">
          <i class="bi-save"> </i> Save
       </button>
     </form>

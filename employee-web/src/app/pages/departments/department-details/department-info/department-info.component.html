@@ -1,0 +1,31 @@
+<h5 class="card-title">
+   <i class="bi-info-lg">
+      Information
+   </i>
+</h5>
+<!-- Code-->
+<div class="mb-3">
+   <label class="form-label">Code</label>
+   <span class="form-control">{{ data().code }}</span>
+</div>
+<!-- Name-->
+<div class="mb-3">
+   <label class="form-label">Name</label>
+   <span class="form-control">{{ data().name }}</span>
+</div>
+<!-- Phone-->
+<div class="mb-3">
+   <label class="form-label">Phone</label>
+   <span class="form-control">{{ data().phone }}</span>
+</div>
+<!-- Head of Department-->
+@if (data().hodName) {
+   <div class="mb-3">
+      <label class="form-label">Head Of Department</label>
+      <span class="form-control">{{ data().hodName }}</span>
+   </div>
+}
+<!-- Remark-->
+@if(data().remark){
+   
+}
