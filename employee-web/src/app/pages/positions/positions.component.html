@@ -1,1 +1,55 @@
-<p>positions works!</p>
+<h4>
+   <i class="bi-briefcase"></i> Positions
+</h4>
+
+<div class="row">
+   <div class="col">
+      @if (list.length > 0) {
+         <table class="table table-bordered">
+            <thead>
+               <tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Basic Salary</th>
+                  <th>OT Per Hour</th>
+                  <th>Employees</th>
+               </tr>
+            </thead>
+            <tbody>
+               @for (item of list(); track $index) {
+                  <tr>
+                     <td>{{ item.code }}</td>
+                     <td>{{ item.name }}</td>
+                     <td>{{ item.basicSalary }}</td>
+                     <td>{{ item.otPerHour }}</td>
+                     <td>{{ item.employees }}</td>
+                  </tr>
+               }
+            </tbody>
+         </table>
+      } @else {
+         <app-no-data domain="Position"></app-no-data>
+      }
+
+   </div>
+   <div class="col-3">
+      <app-card >
+         <form>
+            <app-form-group label="Code">
+               <input type="text" class="form-control" placeholder="Search Code">
+            </app-form-group>
+            <app-form-group label="Name">
+               <input type="text" class="form-control" placeholder="Search Name">
+            </app-form-group>
+            <div>
+               <button (click)="search()" class="btn btn-primary d-inline-block w-100 mb-2">
+                  <i class="bi-search"></i> Search
+               </button>
+               <a class="btn btn-danger d-inline-block w-100">
+                  <i class="bi-plus-lg"></i> Add New
+               </a>
+            </div>
+         </form>
+      </app-card>
+   </div>
+</div>

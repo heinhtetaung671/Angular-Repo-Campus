@@ -1,0 +1,13 @@
+<h4><i [ngClass]="edit() ? 'bi-pencil' : 'bi-add-lg'"></i> {{ edit() ? 'Edit Position' : 'Create Position' }}</h4>
+
+<form [formGroup]="form">
+   <div class="row">
+      <div class="col">
+         <app-form-group label="Code">
+            <app-input-group [valid]="form.get('code')?.valid">
+               <input formControlName="code" type="text" class="form-control" placeholder="Enter Position code">
+            </app-input-group>
+         </app-form-group>
+      </div>
+   </div>
+</form>

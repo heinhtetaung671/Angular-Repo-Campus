@@ -26,6 +26,8 @@ export class DepartmentsComponent {
       code: '',
       name: ''
     })
+
+    this.search();
   }
 
   search(){
