@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiResponse } from './api-response';
 
 
-const BASE_API = `${environment.baseUrl}/department`;
+const BASE_API = `${environment.baseUrl}/position`;
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class PositionService {
   }
 
   create(form: any){
-    return this.http.put<ApiResponse>(`${BASE_API}`, form)
+    return this.http.post<ApiResponse>(`${BASE_API}`, form)
   }
 
   update(form: any){
@@ -26,8 +26,7 @@ export class PositionService {
     return this.http.put<ApiResponse>(`${BASE_API}/${code}`, form)
   }
 
-  findById(form: any){
-    const {code, ...updateForm} = form;
+  findById(code: any){
     return this.http.get<ApiResponse>(`${BASE_API}/${code}`)
   }
 

@@ -27,7 +27,10 @@ export class PositionsComponent {
 
   search(){
     this.service.search(this.form.value).subscribe(result => {
-      this.list.set(result.payload)
+      if(result.success){
+        console.log(result)
+        this.list.set(result.payload)
+      }
     })
   }
 

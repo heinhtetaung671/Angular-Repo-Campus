@@ -23,7 +23,7 @@ export const routes: Routes = [
       {path: 'list', component: PositionsComponent},
       {path: 'details', component: PositionDetailsComponent},
       {path: 'edit', component: PositionEditComponent},
-      { path: '', redirectTo: '/position/list', pathMatch: 'full' }
+      { path: '', redirectTo: '/positions/list', pathMatch: 'full' }
     ],
   },
   {

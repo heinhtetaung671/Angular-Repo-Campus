@@ -1,10 +1,14 @@
 import { Component, signal } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { PositionService } from '../../../service/position.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { WidgetsModule } from '../../../widgets/widgets.module';
-
 
 @Component({
   selector: 'app-position-edit',
@@ -15,9 +19,14 @@ import { WidgetsModule } from '../../../widgets/widgets.module';
 })
 export class PositionEditComponent {
   form: FormGroup;
-  edit = signal(false);
-  
-  constructor(builder: FormBuilder, private service: PositionService, route: ActivatedRoute, private router: Router) {
+  edit = signal<boolean>(false);
+
+  constructor(
+    builder: FormBuilder,
+    private service: PositionService,
+    route: ActivatedRoute,
+    private router: Router
+  ) {
     this.form = builder.group({
       code: ['', Validators.required],
       name: ['', Validators.required],
@@ -26,32 +35,35 @@ export class PositionEditComponent {
       remark: '',
     });
 
-    route.queryParamMap.subscribe(params => {
-      const code = params.get('code')
+    route.queryParamMap.subscribe((params) => {
+      const code = params.get('code');
 
-      if(code){
-        this.edit.set(true)
+      if (code) {
+        this.edit.set(true);
 
-        service.findById(code).subscribe(result => {
-          const {employees, ...updateData} = result.payload;
-          this.form.patchValue(updateData)
-        })
-
+        service.findById(code).subscribe((result) => {
+          if (result.success) {
+            const { employees, ...updateData } = result.payload;
+            this.form.patchValue(updateData);
+          }
+        });
       }
-    })
+    });
   }
 
-  create() {
-    if(this.form.valid){
-     const request = this.edit() ? this.service.update(this.form.value) : this.service.create(this.form.value) 
+  save() {
+    if (this.form.valid) {
+      const request = this.edit()
+        ? this.service.update(this.form.value)
+        : this.service.create(this.form.value);
 
-     request.subscribe(result => {
-      if(result.success){
-        this.router.navigate(['/positions', 'details'], {queryParams: {code: result.payload.id}})
-      }
-     })
+      request.subscribe((result) => {
+        if (result.success) {
+          this.router.navigate(['/positions', 'details'], {
+            queryParams: { code: result.payload.id },
+          });
+        }
+      });
     }
   }
-
-
 }

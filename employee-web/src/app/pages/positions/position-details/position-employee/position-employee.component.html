@@ -1,0 +1,26 @@
+<app-card>
+   <table class="table table-striped">
+      <thead>
+         <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Date Of Birth</th>
+            <th>Gender</th>
+            <th>Email</th>
+         </tr>
+      </thead>
+      <tbody>
+         @for (item of employees(); track $index) {
+            <tr>
+               <td>{{ item.code }}</td>
+               <td>{{ item.name }}</td>
+               <td>{{ item.phone }}</td>
+               <td>{{ item.dateOfBirth }}</td>
+               <td>{{ item.gender }}</td>
+               <td>{{ item.email }}</td>
+            </tr>
+         }
+      </tbody>
+   </table>
+</app-card>

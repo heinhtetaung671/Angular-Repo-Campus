@@ -45,7 +45,7 @@
                <button (click)="search()" class="btn btn-primary d-inline-block w-100 mb-2">
                   <i class="bi-search"></i> Search
                </button>
-               <a class="btn btn-danger d-inline-block w-100">
+               <a [routerLink]="['/positions', 'edit']" class="btn btn-danger d-inline-block w-100">
                   <i class="bi-plus-lg"></i> Add New
                </a>
             </div>

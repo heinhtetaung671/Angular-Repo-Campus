@@ -1,4 +1,4 @@
-<h4><i [ngClass]="edit() ? 'bi-pencil' : 'bi-add-lg'"></i> {{ edit() ? 'Edit Position' : 'Create Position' }}</h4>
+<h4><i [ngClass]="edit() ? 'bi-pencil' : 'bi-plus-lg'"></i> {{ edit() ? 'Edit Position' : 'Create Position' }}</h4>
 
 <form [formGroup]="form">
    <div class="row">
@@ -9,5 +9,39 @@
             </app-input-group>
          </app-form-group>
       </div>
+      <div class="col">
+         <app-form-group label="Name">
+            <app-input-group [valid]="form.get('name')?.valid">
+               <input formControlName="name" type="text" class="form-control" placeholder="Enter Position Name">
+            </app-input-group>
+         </app-form-group>
+      </div>
+   </div>
+
+   <div class="row">
+      <div class="col">
+         <app-form-group label="Basic Salary">
+            <app-input-group [valid]="form.get('basicSalary')?.valid">
+               <input formControlName="basicSalary" type="text" class="form-control" placeholder="Enter Position code">
+            </app-input-group>
+         </app-form-group>
+      </div>
+      <div class="col">
+         <app-form-group label="Over Time Per Hour">
+            <app-input-group [valid]="form.get('otPerHour')?.valid">
+               <input formControlName="otPerHour" type="text" class="form-control" placeholder="Enter Position Name">
+            </app-input-group>
+         </app-form-group>
+      </div>
+   </div>
+   <div>
+      <app-form-group label="Remark">
+         <textarea formControlName="remark" class="form-control" id="" cols="30" rows="3" placeholder="Enter Remark"></textarea>
+      </app-form-group>
+   </div>
+   <div>
+      <button (click)="save()" class="btn btn-primary">
+         <i class="bi-save"></i> Save
+      </button>
    </div>
 </form>

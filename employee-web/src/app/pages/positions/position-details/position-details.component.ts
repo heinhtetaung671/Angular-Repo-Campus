@@ -1,12 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { PositionService } from '../../../service/position.service';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { WidgetsModule } from '../../../widgets/widgets.module';
+import { PositionEmployeeComponent } from './position-employee/position-employee.component';
+import { PositionInfoComponent } from './position-info/position-info.component';
 
 @Component({
   selector: 'app-position-details',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterLink, WidgetsModule, PositionEmployeeComponent, PositionInfoComponent],
   templateUrl: './position-details.component.html',
-  styles: ``
+  styles: ``,
 })
 export class PositionDetailsComponent {
+  data = signal<any>({});
+  employees = signal<any[]>([]);
+
+  constructor(private service: PositionService, route: ActivatedRoute) {
+    route.queryParamMap.subscribe((params) => {
+      const code = params.get('code');
+      if (code) {
+        service.findById(code).subscribe(result => {
+          if(result.success) {
+            const {employees, ...positionData} = result.payload;
+            this.data.set(positionData);
+            this.employees.set(employees);
+          }
+        })
+      }
+    });
+  }
 
 }

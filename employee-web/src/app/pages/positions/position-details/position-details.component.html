@@ -1,1 +1,29 @@
-<p>position-details works!</p>
+<h4 class="d-flex justify-content-between">
+   <div>
+      <i class="bi-briefcase"></i> {{ data().name }}
+   </div>
+
+   <div>
+      <button class="btn btn-outline-info me-2">
+         <i class="bi-people-add"></i> Add Employee
+      </button>
+
+      <button class="btn btn-outline-primary">
+         <i class="bi-pencil"></i>
+      </button>
+   </div>
+</h4>
+
+@if(data().remark){
+   <span class="text-warp"></span>
+}
+
+<div class="row">
+   <div class="col-4">
+      <app-position-info [data]="data()"></app-position-info>
+   </div>
+
+   <div class="col">
+      <app-position-employee [employees]="employees"></app-position-employee>
+   </div>
+</div>
