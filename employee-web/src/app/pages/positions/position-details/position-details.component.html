@@ -15,7 +15,7 @@
 </h4>
 
 @if(data().remark){
-   <span class="text-warp"></span>
+   <span class="text-warp sub-title"></span>
 }
 
 <div class="row">
@@ -24,6 +24,6 @@
    </div>
 
    <div class="col">
-      <app-position-employee [employees]="employees"></app-position-employee>
+      <app-employee-info-list [showPosition]="false" [employees]="employees()"></app-employee-info-list>
    </div>
 </div>

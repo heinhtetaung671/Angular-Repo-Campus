@@ -1,10 +1,11 @@
 import { Component, input } from '@angular/core';
 import { WidgetsModule } from '../../../../widgets/widgets.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-position-info',
   standalone: true,
-  imports: [WidgetsModule],
+  imports: [WidgetsModule, CommonModule],
   templateUrl: './position-info.component.html',
   styles: ``
 })

@@ -4,15 +4,16 @@
 
 <div class="row">
    <div class="col">
-      @if (list.length > 0) {
+      @if (list().length > 0) {
          <table class="table table-bordered">
             <thead>
                <tr>
                   <th>Code</th>
                   <th>Name</th>
-                  <th>Basic Salary</th>
-                  <th>OT Per Hour</th>
+                  <th class="text-end">Basic Salary</th>
+                  <th class="text-end">OT Per Hour</th>
                   <th>Employees</th>
+                  <th></th>
                </tr>
             </thead>
             <tbody>
@@ -20,9 +21,14 @@
                   <tr>
                      <td>{{ item.code }}</td>
                      <td>{{ item.name }}</td>
-                     <td>{{ item.basicSalary }}</td>
-                     <td>{{ item.otPerHour }}</td>
+                     <td class="text-end">{{ item.basicSalary | number}}</td>
+                     <td class="text-end">{{ item.otPerHour }}</td>
                      <td>{{ item.employees }}</td>
+                     <td>
+                        <a [routerLink]="['/positions', 'details']" [queryParams]="{code: item.code}">
+                           <i class="bi-send"></i>
+                        </a>
+                     </td>
                   </tr>
                }
             </tbody>

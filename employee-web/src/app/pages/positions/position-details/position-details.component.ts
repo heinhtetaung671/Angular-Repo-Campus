@@ -3,13 +3,12 @@ import { PositionService } from '../../../service/position.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { WidgetsModule } from '../../../widgets/widgets.module';
-import { PositionEmployeeComponent } from './position-employee/position-employee.component';
 import { PositionInfoComponent } from './position-info/position-info.component';
 
 @Component({
   selector: 'app-position-details',
   standalone: true,
-  imports: [CommonModule, RouterLink, WidgetsModule, PositionEmployeeComponent, PositionInfoComponent],
+  imports: [CommonModule, RouterLink, WidgetsModule, PositionInfoComponent],
   templateUrl: './position-details.component.html',
   styles: ``,
 })

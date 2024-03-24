@@ -1,12 +1,12 @@
-<app-card>
+<app-card *[ngIf]="employees().length > 0">
    <table class="table table-striped">
       <thead>
          <tr>
             <th>Code</th>
             <th>Name</th>
+            <th *ngIf="showPosition()">Position</th>
+            <th *ngIf="showDepartment()">Department</th>
             <th>Phone</th>
-            <th>Date Of Birth</th>
-            <th>Gender</th>
             <th>Email</th>
          </tr>
       </thead>
@@ -15,12 +15,13 @@
             <tr>
                <td>{{ item.code }}</td>
                <td>{{ item.name }}</td>
+               <td *ngIf="showPosition()">{{ item.position }}</td>
+               <td *ngIf="showDepartment()">{{ item.department }}</td>
                <td>{{ item.phone }}</td>
-               <td>{{ item.dateOfBirth }}</td>
-               <td>{{ item.gender }}</td>
                <td>{{ item.email }}</td>
             </tr>
          }
       </tbody>
    </table>
 </app-card>
+<app-no-data [domain]="'Employee'" *ngIf="employees().length <= 0"></app-no-data>

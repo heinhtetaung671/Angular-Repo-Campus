@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+
+  <div class="container">
+    <a routerLink="" routerLinkActive="active"  class="navbar-brand">Angular Routing</a>
+
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a routerLink="/parent-one" routerLinkActive="active" class="nav-link">Parent One</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/parent-two" routerLinkActive="active" class="nav-link">Parent Two</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/parent-three" routerLinkActive="active" class="nav-link">Parent Three</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main class="container">
+  <router-outlet></router-outlet>
+</main>

@@ -1,5 +1,5 @@
 {
-  "name": "weos-angular",
+  "name": "rest-security-web",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -19,13 +19,12 @@
     "@angular/platform-browser-dynamic": "^17.2.0",
     "@angular/router": "^17.2.0",
     "bootstrap": "^5.3.3",
-    "bootstrap-icons": "^1.11.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^17.2.1",
+    "@angular-devkit/build-angular": "^17.2.0",
     "@angular/cli": "^17.2.0",
     "@angular/compiler-cli": "^17.2.0",
     "@types/jasmine": "~5.1.0",
