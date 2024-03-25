@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 
 @Component({
   selector: 'app-parent-two',
@@ -8,5 +8,12 @@ import { Component } from '@angular/core';
   styles: ``
 })
 export class ParentTwoComponent {
+  
+  data!: string
+
+  @Input()
+  set id(name: string){
+    this.data = name;
+  }
 
 }

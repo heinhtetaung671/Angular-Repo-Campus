@@ -1,1 +1,11 @@
-<p>parent-three works!</p>
+<div class="row">
+   <div class="col-5">
+      <div class="list-gorup list-group-flush">
+         <a [routerLink]="['/parent-three/three-chile-one']" routerLinkActive="active" class="list-group-item">Three Chile One</a>
+         <a [routerLink]="['/parent-three/three-chile-two']" routerLinkActive="active" class="list-group-item">Three Chile two</a>
+      </div>
+   </div>
+   <div class="col-7">
+      <router-outlet></router-outlet>
+   </div>
+</div>
